@@ -20,7 +20,7 @@ module.exports = ({name}) => {
     <label for="message">Message:</label><br>
     <textarea id="message" name="message" required></textarea><br>
 
-    <button type="button" onclick="generatePDF()">Generate PDF</button>
+    
   </form>
   </body>
 </html>
