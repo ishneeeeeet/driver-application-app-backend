@@ -978,19 +978,19 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           <p class="c7"><span class="c3">Tractor Semi-Trailer</span></p>
         </td>
         <td class="c36" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.tractor} - yrs</span></p>
         </td>
         <td class="c5" colspan="1" rowspan="1">
           <p class="c7 c46"><span class="c3">Dry Van Reefer</span></p>
         </td>
         <td class="c16" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.van} - yrs</span></p>
         </td>
         <td class="c41" colspan="1" rowspan="1">
           <p class="c7 c24"><span class="c3">Turn Pike/Super B</span></p>
         </td>
         <td class="c16" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.pike} -yrs</span></p>
         </td>
       </tr>
       <tr class="c9">
@@ -998,19 +998,19 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           <p class="c7"><span class="c3">Manual Transmission</span></p>
         </td>
         <td class="c36" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.manual} - yrs</span></p>
         </td>
         <td class="c5" colspan="1" rowspan="1">
           <p class="c7 c46"><span class="c3">Chassis Trailer</span></p>
         </td>
         <td class="c16" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.chassis} - yrs</span></p>
         </td>
         <td class="c41" colspan="1" rowspan="1">
           <p class="c7 c24"><span class="c3">Long Haul</span></p>
         </td>
         <td class="c16" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">__ yrs</span></p>
+          <p class="c4"><span class="c3">${stepOneData.haul} - yrs</span></p>
         </td>
       </tr>
       <tr class="c9">
