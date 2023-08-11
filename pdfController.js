@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 
 exports.createPdf = (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile("invoice.pdf", (err) => {
+  pdf.create(pdfTemplate(req.body), {}).toFile("driverApplication.pdf", (err) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error generating PDF");
@@ -18,11 +18,11 @@ exports.createPdf = (req, res) => {
 };
 
 exports.fetchPdf = (req, res) => {
-  res.sendFile(path.join(__dirname, "invoice.pdf"));
+  res.sendFile(path.join(__dirname, "driverApplication.pdf"));
 };
 
 exports.sendPdf = (req, res) => {
-  const pathToAttachment = path.join(__dirname, "invoice.pdf");
+  const pathToAttachment = path.join(__dirname, "driverApplication.pdf");
   const attachment = fs.readFileSync(pathToAttachment);
 
   let transporter = nodemailer.createTransport({
@@ -40,11 +40,11 @@ exports.sendPdf = (req, res) => {
   const mailOptions = {
     from: "your-email@example.com", // Sender address
     to: "ishneet100@gmail.com", // List of recipients
-    subject: "Pdf generate document", // Subject line
-    text: "Please find the attached invoice.", // Plain text body
+    subject: `New Driver Application`, // Subject line
+    text: "Please find the attached pdf.", // Plain text body
     attachments: [
       {
-        filename: "invoice.pdf",
+        filename: "driverApplication.pdf",
         content: attachment,
         contentType: 'application/pdf',
         disposition: 'attachment'

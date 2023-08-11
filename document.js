@@ -1,4 +1,4 @@
-module.exports = ({ stepOneData, stepTwoData }) => {
+module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
   const today = new Date();
   return `
     <!DOCTYPE html>
@@ -778,7 +778,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           <p class="c7">
             <span class="c3"
               >First
-              Name:${stepOneData.firstName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbspLast
+              Name:${stepOneData.firstName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbspLast
               Name:${stepOneData.lastName}
             </span>
           </p>
@@ -796,9 +796,9 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </p>
           <p class="c7">
             <span class="c12"
-              >Cell No.:
+              >Cell No.: ${stepOneData.cellNo}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home
-              No.:</span
+              No.: ${stepOneData.homeNo}</span
             >
           </p>
         </td>
@@ -867,7 +867,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
             <span class="c3"
               >Driver&rsquo;s License
               No.: ${stepOneData.driverLicenseNumber}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class: ${stepOneData.driverLicenseClass}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expiry
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expiry
               Date:${stepOneData.driverLicenseExpiry}</span
             >
           </p>
@@ -896,7 +896,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </ol>
         </td>
         <td class="c39" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">No</span></p>
+          <p class="c4"><span class="c3">${stepOneData.questionOne}</span></p>
         </td>
       </tr>
       <tr class="c9">
@@ -911,7 +911,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </ol>
         </td>
         <td class="c39" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">No</span></p>
+          <p class="c4"><span class="c3">${stepOneData.questionTwo}</span></p>
         </td>
       </tr>
       <tr class="c9">
@@ -927,7 +927,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </ol>
         </td>
         <td class="c39" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">No</span></p>
+          <p class="c4"><span class="c3">${stepOneData.questionThree}</span></p>
         </td>
       </tr>
       <tr class="c9">
@@ -942,7 +942,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </ol>
         </td>
         <td class="c39" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">No</span></p>
+          <p class="c4"><span class="c3">${stepOneData.questionFour}</span></p>
         </td>
       </tr>
       <tr class="c9">
@@ -958,7 +958,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           </ol>
         </td>
         <td class="c39" colspan="1" rowspan="1">
-          <p class="c4"><span class="c3">No</span></p>
+          <p class="c4"><span class="c3">${stepOneData.questionFive}</span></p>
         </td>
       </tr>
     </table>
@@ -1072,39 +1072,39 @@ module.exports = ({ stepOneData, stepTwoData }) => {
           <p class="c7 c27"><span class="c3"></span></p>
           <p class="c7">
             <span class="c3"
-              >Employment Start Date: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              >Employment Start Date:${stepThreeData.employmentHistory[0].fromDate} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; Employment End Date:</span
+              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+               Employment End Date:${stepThreeData.employmentHistory[0].toDate}</span
             >
           </p>
           <p class="c7">
             <span class="c3"
-              >Name of the Employer: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              >Name of the Employer: ${stepThreeData.employmentHistory[0].employerName}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; Position Held:
+              &nbsp; &nbsp; &nbsp; Position Held: ${stepThreeData.employmentHistory[0].positionHeld}
             </span>
           </p>
-          <p class="c7"><span class="c3">Address:</span></p>
+          <p class="c7"><span class="c3">Address: ${stepThreeData.employmentHistory[0].streetAddress}</span></p>
           <p class="c22">
             <span
-              >City:
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp;Postal Code:
+              >City: ${stepThreeData.employmentHistory[0].city}
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${stepThreeData.employmentHistory[0].province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp; &nbsp;Postal Code: ${stepThreeData.employmentHistory[0].postalCode}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span
-            ><span class="c12">Country:</span>
+            ><span class="c12">Country: ${stepThreeData.employmentHistory[0].country}</span>
           </p>
           <p class="c22">
             <span class="c12"
-              >Contact Person: &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+              >Contact Person: ${stepThreeData.employmentHistory[0].contactName} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
               &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; Contact Number:
+              &nbsp; &nbsp; &nbsp; &nbsp; Contact Number: ${stepThreeData.employmentHistory[0].contactPhone}
             </span>
           </p>
-          <p class="c22"><span class="c3">Reason for Leaving: </span></p>
+          <p class="c22"><span class="c3">Reason for Leaving: ${stepThreeData.employmentHistory[0].reasonForLeaving}</span></p>
           <p class="c22">
             <span>Driving Experience: &nbsp; &nbsp; &nbsp; &nbsp; </span
             ><span class="c15"
@@ -1128,7 +1128,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
                 </ul>
               </td>
               <td class="c50" colspan="1" rowspan="1">
-                <p class="c4"><span class="c18">NO</span></p>
+                <p class="c4"><span class="c18">${stepThreeData.employmentHistory[0].subjectToFMCSRs}</span></p>
               </td>
             </tr>
             <tr class="c9">
@@ -1144,7 +1144,7 @@ module.exports = ({ stepOneData, stepTwoData }) => {
                 </ul>
               </td>
               <td class="c13" colspan="1" rowspan="1">
-                <p class="c4"><span class="c18">NO</span></p>
+                <p class="c4"><span class="c18">${stepThreeData.employmentHistory[0].safetySensitiveFunction}</span></p>
               </td>
             </tr>
           </table>
