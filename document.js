@@ -1,5 +1,114 @@
 module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
   const today = new Date();
+
+  const addressesHTML = stepTwoData.addressesArray
+    .map(
+      (address) => `
+  <tr class="c1">
+    <td class="c19" colspan="1" rowspan="1">
+      <p class="c7">
+        <span class="c3">From date:${address.fromDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To date:${address.toDate}</span>
+      </p>
+      <p class="c7"><span class="c3">Street Address:${address.streetAddress}</span></p>
+      <p class="c22">
+        <span>City: ${address.city}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${address.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:${address.postalCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span class="c30">Country:${address.country}</span>
+      </p>
+    </td>
+  </tr>
+`
+    )
+    .join("");
+
+  const employerHTML = stepThreeData.employmentHistory.map(
+    (employment, index) => `
+    <tr class="c9">
+    <td class="c19" colspan="1" rowspan="1">
+      <p class="c7 c27"><span class="c3"></span></p>
+      <p class="c7">
+        <span class="c3"
+          >Employment Start Date:${employment.fromDate} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
+           Employment End Date:${employment.toDate}</span
+        >
+      </p>
+      <p class="c7">
+        <span class="c3"
+          >Name of the Employer: ${employment.employerName}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; Position Held: ${employment.positionHeld}
+        </span>
+      </p>
+      <p class="c7"><span class="c3">Address: ${employment.streetAddress}</span></p>
+      <p class="c22">
+        <span
+          >City: ${employment.city}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${employment.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          &nbsp; &nbsp;Postal Code: ${employment.postalCode}
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          </span
+        ><span class="c12">Country: ${employment.country}</span>
+      </p>
+      <p class="c22">
+        <span class="c12"
+          >Contact Person: ${employment.contactName} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+          &nbsp; &nbsp; &nbsp; &nbsp; Contact Number: ${employment.contactPhone}
+        </span>
+      </p>
+      <p class="c22"><span class="c3">Reason for Leaving: ${employment.reasonForLeaving}</span></p>
+      <p class="c22">
+        <span>Driving Experience: &nbsp; &nbsp; &nbsp; &nbsp; </span
+        ><span class="c15"
+          >Semi-Trailer &nbsp; &nbsp; &nbsp;Reefer &nbsp; &nbsp; &nbsp;
+          &nbsp; Flatbed &nbsp; &nbsp; &nbsp; &nbsp; Tanker/Bulk &nbsp;
+          &nbsp; &nbsp; Dump &nbsp; &nbsp; &nbsp; Super B/Turnpike</span
+        >
+      </p>
+      <a id="t.86bdf79073a2b4fda2a25e3894e539587fc0ba44"></a
+      ><a id="t.6"></a>
+      <table class="c0">
+        <tr class="c9">
+          <td class="c48" colspan="1" rowspan="1">
+            <ul class="c2 lst-kix_list_2-0 start">
+              <li class="c6 c47 li-bullet-0">
+                <span class="c11"
+                  >Were you subject to the FMCSRs* while employed
+                  here?</span
+                >
+              </li>
+            </ul>
+          </td>
+          <td class="c50" colspan="1" rowspan="1">
+            <p class="c4"><span class="c18">${employment.subjectToFMCSRs}</span></p>
+          </td>
+        </tr>
+        <tr class="c9">
+          <td class="c48" colspan="1" rowspan="1">
+            <ul class="c2 lst-kix_list_2-0">
+              <li class="c6 c47 li-bullet-0">
+                <span class="c11"
+                  >Was your job designated as a safety-sensitive function in
+                  any DOT-regulated mode subject to the drug and alcohol
+                  testing requirements of 49 CFR Part 40?</span
+                >
+              </li>
+            </ul>
+          </td>
+          <td class="c13" colspan="1" rowspan="1">
+            <p class="c4"><span class="c18">${employment.safetySensitiveFunction}</span></p>
+          </td>
+        </tr>
+      </table>
+      <p class="c22 c27"><span class="c3"></span></p>
+    </td>
+  </tr>
+`
+  ).join("");
+
   return `
     <!DOCTYPE html>
     <html>
@@ -458,7 +567,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         font-style: normal;
       }
       .c12 {
-        color: #ff0000;
+        color: #141010;
         font-weight: 400;
         text-decoration: none;
         vertical-align: baseline;
@@ -625,7 +734,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         height: 11.8pt;
       }
       .c30 {
-        color: #ff0000;
+        color: #000000;
       }
       .c1 {
         height: 56.6pt;
@@ -758,11 +867,13 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
       </p>
     </div>
     <p class="c6 c27"><span class="c3"></span></p>
-    <p class="c6"><span class="c3">Application Date: </span></p>
+    <p class="c6"><span class="c3">Application Date: ${today} </span></p>
     <p class="c6">
       <span class="c3"
         >Company Applied
-        For:${stepOneData.companyAppliedFor}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position
+        For:${
+          stepOneData.companyAppliedFor
+        }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Position
         applied for: ${stepOneData.position}
       </span>
     </p>
@@ -778,14 +889,18 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7">
             <span class="c3"
               >First
-              Name:${stepOneData.firstName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbspLast
+              Name:${
+                stepOneData.firstName
+              }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbsp;&nbsp;&nbsp&nbsp&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp&nbsp;&nbspLast
               Name:${stepOneData.lastName}
             </span>
           </p>
           <p class="c7">
             <span class="c3"
               >Date of
-              Birth: ${stepOneData.dateOfBirth}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Legal
+              Birth: ${
+                stepOneData.dateOfBirth
+              }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Legal
               Status in Canada: ${stepOneData.status}
             </span>
           </p>
@@ -798,7 +913,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
             <span class="c12"
               >Cell No.: ${stepOneData.cellNo}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home
-              No.: ${stepOneData.homeNo}</span
+              No.: ${stepOneData.homeNo ? stepOneData.homeNo : null}</span
             >
           </p>
         </td>
@@ -812,44 +927,8 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7"><span class="c20">Address in past 3 years</span></p>
         </td>
       </tr>
-      <tr class="c1">
-        <td class="c19" colspan="1" rowspan="1">
-          <p class="c7">
-            <span class="c3"
-              >From
-              date:${stepTwoData.addressesArray[0].fromDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To
-              date:${stepTwoData.addressesArray[0].toDate} </span
-            >
-          </p>
-          <p class="c7"><span class="c3">Street Address:${stepTwoData.addressesArray[0].streetAddress}</span></p>
-          <p class="c22">
-            <span
-              >City: ${stepTwoData.addressesArray[0].city}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${stepTwoData.addressesArray[0].province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal
-              Code:${stepTwoData.addressesArray[0].postalCode}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-            ><span class="c30">Country:${stepTwoData.addressesArray[0].country}</span>
-          </p>
-          <p class="c7 c27"><span class="c3"></span></p>
-          <p class="c7">
-            <span class="c3"
-              >From
-              date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To
-              date:</span
-            >
-          </p>
-          <p class="c7"><span class="c3">Street Address:</span></p>
-          <p class="c7">
-            <span class="c3"
-              >City:
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal
-              Code:
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Country:</span
-            >
-          </p>
-          <p class="c7 c27"><span class="c3"></span></p>
-        </td>
-      </tr>
+      ${addressesHTML}
+      
     </table>
     <p class="c6"><span class="c33 c31">&nbsp; &nbsp; &nbsp; </span></p>
     <a id="t.b61bea1e32fea2b57e84acee8b13cb6dca2a8dd6"></a><a id="t.2"></a>
@@ -866,7 +945,11 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7">
             <span class="c3"
               >Driver&rsquo;s License
-              No.: ${stepOneData.driverLicenseNumber}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class: ${stepOneData.driverLicenseClass}
+              No.: ${
+                stepOneData.driverLicenseNumber
+              }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Class: ${
+    stepOneData.driverLicenseClass
+  }
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Expiry
               Date:${stepOneData.driverLicenseExpiry}</span
             >
@@ -874,8 +957,12 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7">
             <span
               >Issuing
-              Province: ${stepOneData.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-            ><span class="c30">Any Driver License Condition: ${stepOneData.driverLicenseNumber}</span>
+              Province: ${
+                stepOneData.province
+              }&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+            ><span class="c30">Any Driver License Condition: ${
+              stepOneData.driverLicenseCondition
+            }</span>
           </p>
         </td>
       </tr>
@@ -962,13 +1049,13 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         </td>
       </tr>
     </table>
-    <p class="c6 c27"><span class="c12"></span></p>
-    <p class="c6">
-      <span class="c12"
-        >Explanation for any answer given as YES:
-        ________________________________________________</span
-      >
-    </p>
+    // <p class="c6 c27"><span class="c12"></span></p>
+    // <p class="c6">
+    //   <span class="c12"
+    //     >Explanation for any answer given as YES:
+    //     ________________________________________________</span
+    //   >
+    // </p>
     <p class="c27 c37"><span class="c40 c20"></span></p>
     <p class="c37"><span class="c20 c40">DRIVING EXPERIENCE</span></p>
     <a id="t.0e8d7d6f73fb90cceca6036378c11db20083bff6"></a><a id="t.4"></a>
@@ -1067,93 +1154,9 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7"><span class="c40 c20">Employment History</span></p>
         </td>
       </tr>
-      <tr class="c9">
-        <td class="c19" colspan="1" rowspan="1">
-          <p class="c7 c27"><span class="c3"></span></p>
-          <p class="c7">
-            <span class="c3"
-              >Employment Start Date:${stepThreeData.employmentHistory[0].fromDate} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;  
-               Employment End Date:${stepThreeData.employmentHistory[0].toDate}</span
-            >
-          </p>
-          <p class="c7">
-            <span class="c3"
-              >Name of the Employer: ${stepThreeData.employmentHistory[0].employerName}&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; Position Held: ${stepThreeData.employmentHistory[0].positionHeld}
-            </span>
-          </p>
-          <p class="c7"><span class="c3">Address: ${stepThreeData.employmentHistory[0].streetAddress}</span></p>
-          <p class="c22">
-            <span
-              >City: ${stepThreeData.employmentHistory[0].city}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${stepThreeData.employmentHistory[0].province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp;Postal Code: ${stepThreeData.employmentHistory[0].postalCode}
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span
-            ><span class="c12">Country: ${stepThreeData.employmentHistory[0].country}</span>
-          </p>
-          <p class="c22">
-            <span class="c12"
-              >Contact Person: ${stepThreeData.employmentHistory[0].contactName} &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; Contact Number: ${stepThreeData.employmentHistory[0].contactPhone}
-            </span>
-          </p>
-          <p class="c22"><span class="c3">Reason for Leaving: ${stepThreeData.employmentHistory[0].reasonForLeaving}</span></p>
-          <p class="c22">
-            <span>Driving Experience: &nbsp; &nbsp; &nbsp; &nbsp; </span
-            ><span class="c15"
-              >Semi-Trailer &nbsp; &nbsp; &nbsp;Reefer &nbsp; &nbsp; &nbsp;
-              &nbsp; Flatbed &nbsp; &nbsp; &nbsp; &nbsp; Tanker/Bulk &nbsp;
-              &nbsp; &nbsp; Dump &nbsp; &nbsp; &nbsp; Super B/Turnpike</span
-            >
-          </p>
-          <a id="t.86bdf79073a2b4fda2a25e3894e539587fc0ba44"></a
-          ><a id="t.6"></a>
-          <table class="c0">
-            <tr class="c9">
-              <td class="c48" colspan="1" rowspan="1">
-                <ul class="c2 lst-kix_list_2-0 start">
-                  <li class="c6 c47 li-bullet-0">
-                    <span class="c11"
-                      >Were you subject to the FMCSRs* while employed
-                      here?</span
-                    >
-                  </li>
-                </ul>
-              </td>
-              <td class="c50" colspan="1" rowspan="1">
-                <p class="c4"><span class="c18">${stepThreeData.employmentHistory[0].subjectToFMCSRs}</span></p>
-              </td>
-            </tr>
-            <tr class="c9">
-              <td class="c48" colspan="1" rowspan="1">
-                <ul class="c2 lst-kix_list_2-0">
-                  <li class="c6 c47 li-bullet-0">
-                    <span class="c11"
-                      >Was your job designated as a safety-sensitive function in
-                      any DOT-regulated mode subject to the drug and alcohol
-                      testing requirements of 49 CFR Part 40?</span
-                    >
-                  </li>
-                </ul>
-              </td>
-              <td class="c13" colspan="1" rowspan="1">
-                <p class="c4"><span class="c18">${stepThreeData.employmentHistory[0].safetySensitiveFunction}</span></p>
-              </td>
-            </tr>
-          </table>
-          <p class="c22 c27"><span class="c3"></span></p>
-        </td>
-      </tr>
+      ${employerHTML}
     </table>
-    <p class="c6"><span class="c14">&nbsp; &nbsp;</span></p>
-    <a id="t.5f414607cc9c5abf6e0a176a91e5ec83da10499c"></a><a id="t.7"></a>
+   
     <table class="c0">
       <tr class="c35">
         <td class="c19 c28" colspan="1" rowspan="1">
