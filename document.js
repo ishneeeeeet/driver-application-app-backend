@@ -1,24 +1,24 @@
 module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
   const today = new Date();
 
-  const addressesHTML = stepTwoData.addressesArray
-    .map(
-      (address) => `
-  <tr class="c1">
-    <td class="c19" colspan="1" rowspan="1">
-      <p class="c7">
-        <span class="c3">From date:${address.fromDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To date:${address.toDate}</span>
-      </p>
-      <p class="c7"><span class="c3">Street Address:${address.streetAddress}</span></p>
-      <p class="c22">
-        <span>City: ${address.city}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${address.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:${address.postalCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-        <span class="c30">Country:${address.country}</span>
-      </p>
-    </td>
-  </tr>
-`
-    )
-    .join("");
+//   const addressesHTML = stepTwoData.addressesArray
+//     .map(
+//       (address) => `
+//   <tr class="c1">
+//     <td class="c19" colspan="1" rowspan="1">
+//       <p class="c7">
+//         <span class="c3">From date:${address.fromDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;To date:${address.toDate}</span>
+//       </p>
+//       <p class="c7"><span class="c3">Street Address:${address.streetAddress}</span></p>
+//       <p class="c22">
+//         <span>City: ${address.city}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${address.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:${address.postalCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+//         <span class="c30">Country:${address.country}</span>
+//       </p>
+//     </td>
+//   </tr>
+// `
+//     )
+//     .join("");
 
   const employerHTML = stepThreeData.employmentHistory.map(
     (employment, index) => `
@@ -927,7 +927,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           <p class="c7"><span class="c20">Address in past 3 years</span></p>
         </td>
       </tr>
-      ${addressesHTML}
+      {addressesHTML}
       
     </table>
     <p class="c6"><span class="c33 c31">&nbsp; &nbsp; &nbsp; </span></p>
