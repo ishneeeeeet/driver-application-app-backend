@@ -1049,13 +1049,6 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         </td>
       </tr>
     </table>
-    // <p class="c6 c27"><span class="c12"></span></p>
-    // <p class="c6">
-    //   <span class="c12"
-    //     >Explanation for any answer given as YES:
-    //     ________________________________________________</span
-    //   >
-    // </p>
     <p class="c27 c37"><span class="c40 c20"></span></p>
     <p class="c37"><span class="c20 c40">DRIVING EXPERIENCE</span></p>
     <a id="t.0e8d7d6f73fb90cceca6036378c11db20083bff6"></a><a id="t.4"></a>
