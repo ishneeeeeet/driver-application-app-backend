@@ -270,7 +270,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         min-width: 18pt;
       }
       .lst-kix_list_2-0 > li:before {
-        content: "\x0025cf   ";
+        content: "\x00   ";
       }
       .lst-kix_list_2-1 > li:before {
         content: "o  ";
@@ -282,7 +282,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
         content: "\x0025aa   ";
       }
       .lst-kix_list_2-3 > li:before {
-        content: "\x0025cf   ";
+        content: "\x00   ";
       }
       ol {
         margin: 0;
