@@ -1268,6 +1268,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
       </p>
       <p class="c7 c27"><span class="c3"></span></p>
     </div>
+    <img src="./images/Employment-verification.png" alt="Image Description">
   </body>
 </html>
 
