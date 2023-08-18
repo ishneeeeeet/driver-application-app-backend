@@ -1,4 +1,4 @@
-module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
+module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepFiveData }) => {
   const today = new Date();
 
   const addressesHTML = stepTwoData.addressesArray
@@ -11,7 +11,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
       </p>
       <p class="c7"><span class="c3">Street Address:${address.streetAddress}</span></p>
       <p class="c22">
-        <span>City: ${address.city}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${address.province}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:${address.postalCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        <span>City: ${address.city}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prov. ${address.region}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Postal Code:${address.postalCode}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <span class="c30">Country:${address.country}</span>
       </p>
     </td>
@@ -108,6 +108,50 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
   </tr>
 `
   ).join("");
+
+const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) => `
+  <tr class="c1">
+  <td class="c19" colspan="1" rowspan="1">
+    <p class="c7">
+      <span class="c3"
+        >Date of
+        Accident:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location: ${accidentDetails.accidentLocation}
+      </span>
+    </p>
+    <p class="c7"><span class="c3">Nature of Accident: ${accidentDetails.accidentDescription}</span></p>
+    <p class="c7">
+      <span class="c30">No. of </span
+      ><span
+        >Fatalities: ${accidentDetails.numberOfFatalities}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+      ><span class="c30">No. of </span><span class="c3">Injuries: ${accidentDetails.numberOfInjuries}</span>
+    </p>
+    <p class="c7">
+      <span class="c12"
+        >Hazardous Material Spill: ${accidentDetails.numberOfHazardousMaterialSpills}
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
+      >
+    </p>
+  </td>
+</tr>`
+  ).join("")
+
+  const convictionHTML = stepFiveData.convictionsArray.map((convictionDetails) => 
+  `  <tr class="c23">
+  <td class="c49" colspan="1" rowspan="1">
+    <p class="c7">
+      <span class="c3"
+        >Date:${convictionDetails.convictionDate}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Charge: ${convictionDetails.charge}
+      </span>
+    </p>
+    <p class="c7">
+      <span class="c3"
+        >Location: ${convictionDetails.convictionLocation}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Penalty: ${convictionDetails.penalty}
+      </span>
+    </p>
+  </td>
+</tr>`
+  ).join("")
 
   return `
     <!DOCTYPE html>
@@ -913,7 +957,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
             <span class="c12"
               >Cell No.: ${stepOneData.cellNo}
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Home
-              No.: ${stepOneData.homeNo ? stepOneData.homeNo : null}</span
+              No.: ${stepOneData.homeNo ? stepOneData.homeNo : ''}</span
             >
           </p>
         </td>
@@ -1149,36 +1193,15 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
       </tr>
       ${employerHTML}
     </table>
-   
+    <p class="c6"><span class="c14">&nbsp; &nbsp;</span></p>
+    <a id="t.6c423e50043113b89dd8d1a32acc682f9e727355"></a><a id="t.8"></a>
     <table class="c0">
       <tr class="c35">
         <td class="c19 c28" colspan="1" rowspan="1">
           <p class="c7"><span class="c20">Accident History</span></p>
         </td>
       </tr>
-      <tr class="c1">
-        <td class="c19" colspan="1" rowspan="1">
-          <p class="c7">
-            <span class="c3"
-              >Date of
-              Accident:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Location:
-            </span>
-          </p>
-          <p class="c7"><span class="c3">Nature of Accident: </span></p>
-          <p class="c7">
-            <span class="c30">No. of </span
-            ><span
-              >Fatalities:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-            ><span class="c30">No. of </span><span class="c3">Injuries:</span>
-          </p>
-          <p class="c7">
-            <span class="c12"
-              >Hazardous Material Spill:
-              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span
-            >
-          </p>
-        </td>
-      </tr>
+     ${accidentHistoryHTML}
     </table>
     <p class="c6"><span class="c14">&nbsp; &nbsp;</span></p>
     <a id="t.6c423e50043113b89dd8d1a32acc682f9e727355"></a><a id="t.8"></a>
@@ -1191,21 +1214,7 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData }) => {
           </p>
         </td>
       </tr>
-      <tr class="c23">
-        <td class="c49" colspan="1" rowspan="1">
-          <p class="c7">
-            <span class="c3"
-              >Date:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Charge:
-            </span>
-          </p>
-          <p class="c7">
-            <span class="c3"
-              >Location:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Penalty:
-            </span>
-          </p>
-        </td>
-      </tr>
+    ${convictionHTML}
     </table>
     <p class="c6"><span class="c14">&nbsp; &nbsp; </span></p>
     <p class="c6">
