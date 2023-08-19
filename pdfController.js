@@ -6,7 +6,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 
 exports.createPdf = (req, res) => {
-  pdf.create(pdfTemplate(req.body), {}).toFile("driverApplication.pdf", (err) => {
+  pdf.create(pdfTemplate(req.body), {phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"}).toFile("driverApplication.pdf", (err) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error generating PDF");
