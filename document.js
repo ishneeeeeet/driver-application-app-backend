@@ -1,5 +1,13 @@
-module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepFiveData, stepSevenData, stepEightData }) => {
+module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepFiveData, 
+  stepSixData, stepSevenData, stepEightData }) => {
   const today = new Date().toLocaleDateString();
+
+  const getFormattedDate = (index) => {
+    const today = new Date();
+    const date = new Date(today);
+    date.setDate(today.getDate() - index);
+    return date.toISOString().split("T")[0];
+  };
 
   const addressesHTML = stepTwoData.addressesArray
     .map(
@@ -146,6 +154,23 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
   <br />
   </td>
 </tr>`
+  ).join("")
+
+  const lastWorkedHoursHTML = stepSixData.hoursWorked.map((hours, index) => {
+   if(index % 2 == 0){
+     return `
+    <tr class="c43">
+  <td style="padding: 0 0 0 0; border: 1px solid #dddddd;" class="c49" colspan="1" rowspan="1">
+    <div style="width:25%; float:left;" class="c7 c3">${getFormattedDate(index)}</div>
+    <div style="width:25%; float:left;" class="c7 c3">${hours}</div>`
+   } else {
+    return `
+    <div style="width:25%; float:right;" class="c7 c3">${hours}</div>
+    <div style="width:25%; float:right;" class="c7 c3">${getFormattedDate(index)}</div> 
+    </td>
+    </tr>`
+   }
+  }
   ).join("")
 
   return `
@@ -1212,7 +1237,27 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
       </tr>
     ${convictionHTML}
     </table>
+
     <p class="c6"><span class="c14">&nbsp; &nbsp; </span></p>
+    <table class="c0">
+    <tr class="c43">
+      <td class="c49 c28">
+        <p class="c7">
+          <span class="c20">Hours Worked in Last 14 Days</span>
+        </p>
+      </td>
+    </tr>
+    <tr class="c43">
+  <td style="padding: 0 0 0 0; border: 1px solid #dddddd;" class="c49" colspan="1" rowspan="1">
+    <div style="width:25%; float:left;" class="c7 c3">Date</div>
+    <div style="width:25%; float:left;" class="c7 c3">Hours Worked</div>
+    <div style="width:25%; float:right;" class="c7 c3">Hours Worked</div>
+    <div style="width:25%; float:right;" class="c7 c3">Date</div> 
+    </td>
+    </tr>
+  ${lastWorkedHoursHTML}
+  </table>
+  <p class="c6"><span class="c14">&nbsp; &nbsp; </span></p>
     <p class="c6">
       <span>Accepted by the Applicant: </span><span class="c31">YES</span>
     </p>
