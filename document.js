@@ -1336,7 +1336,7 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
 
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="20px" height="20px" src=${stepEightData.sign2} alt="Sign">
+        Signature: <img width="400px" height="100px" src=${stepEightData.sign2} alt="Sign">
     </div>
     <div style="float:right;" class="c32 c15">Date: ${today}</div>
 
