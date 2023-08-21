@@ -1,5 +1,13 @@
-module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepFiveData, 
-  stepSixData, stepSevenData, stepEightData }) => {
+module.exports = ({
+  stepOneData,
+  stepTwoData,
+  stepThreeData,
+  stepFourData,
+  stepFiveData,
+  stepSixData,
+  stepSevenData,
+  stepEightData,
+}) => {
   const today = new Date().toLocaleDateString();
 
   const getFormattedDate = (index) => {
@@ -31,8 +39,9 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepF
     )
     .join("");
 
-  const employerHTML = stepThreeData.employmentHistory.map(
-    (employment, index) => `
+  const employerHTML = stepThreeData.employmentHistory
+    .map(
+      (employment, index) => `
     <tr class="c9">
     <td class="c19" colspan="1" rowspan="1">
       <p class="c7 c27"><span class="c3"></span></p>
@@ -120,9 +129,12 @@ module.exports = ({ stepOneData, stepTwoData, stepThreeData, stepFourData, stepF
     </td>
   </tr>
 `
-  ).join("");
+    )
+    .join("");
 
-const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) => `
+  const accidentHistoryHTML = stepFourData.accidentsArray
+    .map(
+      (accidentDetails) => `
   <tr class="c1">
   <td class="c19" colspan="1" rowspan="1">
   <p class="c7 c27"><span class="c3"></span></p>
@@ -139,10 +151,13 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
   <div style="width:50%; float:right;" class="c7 c3">Hazardous Material Spill: ${accidentDetails.numberOfHazardousMaterialSpills}</div> 
   </td>
 </tr>`
-  ).join("")
+    )
+    .join("");
 
-  const convictionHTML = stepFiveData.convictionsArray.map((convictionDetails) => 
-  `<tr class="c23">
+  const convictionHTML = stepFiveData.convictionsArray
+    .map(
+      (convictionDetails) =>
+        `<tr class="c23">
   <td class="c49" colspan="1" rowspan="1">
   <p class="c7 c27"><span class="c3"></span></p>
   <div style="width:50%; float:left;" class="c7 c3">Date:${convictionDetails.convictionDate}</div>
@@ -154,24 +169,30 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
   <br />
   </td>
 </tr>`
-  ).join("")
+    )
+    .join("");
 
-  const lastWorkedHoursHTML = stepSixData.hoursWorked.map((hours, index) => {
-   if(index % 2 == 0){
-     return `
+  const lastWorkedHoursHTML = stepSixData.hoursWorked
+    .map((hours, index) => {
+      if (index % 2 == 0) {
+        return `
     <tr class="c43">
   <td style="padding: 0 0 0 0; border: 1px solid #dddddd;" class="c49" colspan="1" rowspan="1">
-    <div style="width:25%; float:left;" class="c7 c3">${getFormattedDate(index)}</div>
-    <div style="width:25%; float:left;" class="c7 c3">${hours}</div>`
-   } else {
-    return `
+    <div style="width:25%; float:left;" class="c7 c3">${getFormattedDate(
+      index
+    )}</div>
+    <div style="width:25%; float:left;" class="c7 c3">${hours}</div>`;
+      } else {
+        return `
     <div style="width:25%; float:right;" class="c7 c3">${hours}</div>
-    <div style="width:25%; float:right;" class="c7 c3">${getFormattedDate(index)}</div> 
+    <div style="width:25%; float:right;" class="c7 c3">${getFormattedDate(
+      index
+    )}</div> 
     </td>
-    </tr>`
-   }
-  }
-  ).join("")
+    </tr>`;
+      }
+    })
+    .join("");
 
   return `
     <!DOCTYPE html>
@@ -934,9 +955,7 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
     <p class="c6"><span class="c3">Application Date: ${today} </span></p>
       <div style="width:50%; float:left;" class="c6 c3"
         >Company Applied
-        For:${
-          stepOneData.companyAppliedFor
-        }</div>
+        For:${stepOneData.companyAppliedFor}</div>
         <div style="width:50%; float:right;" class="c6 c3"
         >
         Position
@@ -955,17 +974,15 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
         <p class="c7 c27"><span class="c3"></span></p>
         <div style="width:50%; float:left;" class="c7 c3">
               First
-              Name: ${
-                stepOneData.firstName
-              }</div>
-              <div style="width:50%; float:right;" class="c7 c3">Last Name: ${stepOneData.lastName}
+              Name: ${stepOneData.firstName}</div>
+              <div style="width:50%; float:right;" class="c7 c3">Last Name: ${
+                stepOneData.lastName
+              }
             </div>
             <br/>
           <div style="width:50%; float:left;" class="c7 c3">
             Date of
-            Birth: ${
-              stepOneData.dateOfBirth
-            }</div>
+            Birth: ${stepOneData.dateOfBirth}</div>
             <div style="width:50%; float:right;" class="c7 c3">Legal
             Status in Canada: ${stepOneData.status}
           </div>
@@ -977,7 +994,7 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
           <div style="width:50%; float:left;" class="c7 c3">
           Cell No.: ${stepOneData.cellNo}</div>
           <div style="width:50%; float:right;" class="c7 c3">Home
-          No.: ${stepOneData.homeNo ? stepOneData.homeNo : ''}
+          No.: ${stepOneData.homeNo ? stepOneData.homeNo : ""}
           </div>
         </td>
       </tr>
@@ -1007,9 +1024,7 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
         <td class="c19" colspan="1" rowspan="1">
       <p class="c7 c27"><span class="c3"></span></p>
         <div style="width:50%; float:left;" class="c7 c3">Driver&rsquo;s License
-        No.: ${
-          stepOneData.driverLicenseNumber
-        }</div>
+        No.: ${stepOneData.driverLicenseNumber}</div>
       <div style="width:50%; float:right;" class="c7 c3">Class: ${
         stepOneData.driverLicenseClass
       }</div>
@@ -1018,9 +1033,7 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
       <div style="width:50%; float:left;" class="c7 c3">Expiry
       Date:${stepOneData.driverLicenseExpiry}</div>
     <div style="width:50%; float:right;" class="c7 c3">Issuing
-    Province: ${
-      stepOneData.province
-    }</div>
+    Province: ${stepOneData.province}</div>
     <br/>
 
     <div style="width:50%; float:left;" class="c7 c3">Any Driver License Condition: ${
@@ -1303,7 +1316,9 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
     <p class="c32 c27"><span class="c15"></span></p>
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="20px" height="20px" src=${stepSevenData.sign1} alt="Sign">
+        Signature: <img width="300px" height="72px" src=${
+          stepSevenData.sign1
+        } alt="Sign">
     </div>
     <div style="float:right;" class="c32 c15">Date: ${today}</div>
 
@@ -1325,7 +1340,9 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
 
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="20px" height="20px" src=${stepSevenData.sign2} alt="Sign">
+        Signature: <img width="300px" height="72px" src=${
+          stepSevenData.sign2
+        } alt="Sign">
     </div>
     <div style="float:right;" class="c32 c15">Date: ${today}</div>
 
@@ -1336,7 +1353,9 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
 
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="400px" height="100px" src=${stepEightData.sign2} alt="Sign">
+        Signature: <img width="300px" height="72px" src=${
+          stepEightData.sign2
+        } alt="Sign">
     </div>
     <div style="float:right;" class="c32 c15">Date: ${today}</div>
 
@@ -1347,8 +1366,16 @@ const accidentHistoryHTML = stepFourData.accidentsArray.map((accidentDetails) =>
         <span>Driving License: &nbsp; &nbsp; &nbsp; &nbsp; </span
         >
       </p>
-      <img width="100%" src=${stepOneData.driverLicenseFront ? stepOneData.driverLicenseFront?.base64 : ''} alt="License Front Page">
-      <img width="100%" src=${stepOneData.driverLicenseBack ? stepOneData.driverLicenseBack?.base64 : ''} alt="License Back Page">
+      <img width="100%" src=${
+        stepOneData.driverLicenseFront
+          ? stepOneData.driverLicenseFront?.base64
+          : ""
+      } alt="License Front Page">
+      <img width="100%" src=${
+        stepOneData.driverLicenseBack
+          ? stepOneData.driverLicenseBack?.base64
+          : ""
+      } alt="License Back Page">
   </body>
 </html>
 
