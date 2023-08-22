@@ -1316,7 +1316,7 @@ module.exports = ({
     <p class="c32 c27"><span class="c15"></span></p>
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="300px" height="72px" src=${
+        Signature: <img width="120px" height="29px" src=${
           stepSevenData.sign1
         } alt="Sign">
     </div>
@@ -1339,8 +1339,11 @@ module.exports = ({
     <br/>
 
     <div style="float:left;" class="c32 c15">
+    <p class="c22">
+    <span>Road Test / Driver Evaluation Consent</span>
+  </p>
     Applicant
-        Signature: <img width="300px" height="72px" src=${
+        Signature: <img width="120px" height="29px" src=${
           stepSevenData.sign2
         } alt="Sign">
     </div>
@@ -1353,7 +1356,7 @@ module.exports = ({
 
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="300px" height="72px" src=${
+        Signature: <img width="120px" height="29px" src=${
           stepEightData.sign2
         } alt="Sign">
     </div>
