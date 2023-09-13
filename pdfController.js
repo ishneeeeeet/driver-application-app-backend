@@ -38,7 +38,7 @@ exports.sendPdf = (req, res) => {
   });
 
   const mailOptions = {
-    from: "your-email@example.com", // Sender address
+    from: "admin@primeztrucking.ca", // Sender address
     to: "admin@primeztrucking.ca", // List of recipients
     subject: `New Driver Application`, // Subject line
     text: "Please find the attached pdf.", // Plain text body
