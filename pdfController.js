@@ -32,8 +32,8 @@ exports.sendPdf = (req, res) => {
     port: 465,
     secure: false,
     auth: {
-      user: 'admin@primeztrucking.ca',
-      pass: 'mwwo kvxg bcvy wdpz',
+      user: 'ishneet100@gmail.com',
+      pass: 'qyrmewejfidinkhf',
     },
   });
 
