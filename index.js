@@ -27,7 +27,7 @@ app.use(function(req, res, next) {
     next();
   });
 app.use(pdfRoute);
-app.listen(port, () => console.log(`server is running on port ${port}`));
+// app.listen(port, () => console.log(`server is running on port ${port}`));
 
 // export const handler = serverless(app);
 module.exports.handler = serverless(app);
