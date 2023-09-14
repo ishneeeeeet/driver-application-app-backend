@@ -18,7 +18,9 @@ exports.createPdf = (req, res) => {
 
 exports.fetchPdf = (req, res) => {
   res.sendFile(path.join(__dirname, "/tmp/driverApplication.pdf"));
+};
 
+exports.sendPdf = (req, res) => {
   const pathToAttachment = path.join(__dirname, "/tmp/driverApplication.pdf");
   const attachment = fs.readFileSync(pathToAttachment);
 
