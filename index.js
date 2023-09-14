@@ -1,6 +1,7 @@
 const express = require("express");
 const env = require("dotenv");
 const cors = require("cors");
+const serverless = require('serverless-http');
 const pdfRoute = require("./pdfRoutes");
 env.config();
 const app = express();
@@ -27,3 +28,7 @@ app.use(function(req, res, next) {
   });
 app.use(pdfRoute);
 app.listen(port, () => console.log(`server is running on port ${port}`));
+
+// export const handler = serverless(app);
+module.exports.handler = serverless(app);
+

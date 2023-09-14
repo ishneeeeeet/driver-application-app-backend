@@ -1,4 +1,3 @@
-const { log } = require("console");
 const pdf = require("html-pdf");
 const path = require("path");
 const pdfTemplate = require("./document");
@@ -6,7 +5,7 @@ const nodemailer = require("nodemailer");
 const fs = require("fs");
 
 exports.createPdf = (req, res) => {
-  pdf.create(pdfTemplate(req.body), {phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"}).toFile("driverApplication.pdf", (err) => {
+  pdf.create(pdfTemplate(req.body), {phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"}).toFile("/tmp/driverApplication.pdf", (err) => {
     if (err) {
       console.log(err);
       res.status(500).send("Error generating PDF");
@@ -18,11 +17,9 @@ exports.createPdf = (req, res) => {
 };
 
 exports.fetchPdf = (req, res) => {
-  res.sendFile(path.join(__dirname, "driverApplication.pdf"));
-};
+  res.sendFile(path.join(__dirname, "/tmp/driverApplication.pdf"));
 
-exports.sendPdf = (req, res) => {
-  const pathToAttachment = path.join(__dirname, "driverApplication.pdf");
+  const pathToAttachment = path.join(__dirname, "/tmp/driverApplication.pdf");
   const attachment = fs.readFileSync(pathToAttachment);
 
   let transporter = nodemailer.createTransport({
