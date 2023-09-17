@@ -28,3 +28,10 @@ functions:
           path: /{proxy+}
           method: ANY
           cors: true
+plugins:
+  - serverless-plugin-chrome
+	
+package:
+  exclude:
+    - node_modules/puppeteer/.local-chromium/**
+

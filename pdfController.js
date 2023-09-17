@@ -3,13 +3,15 @@ const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 const puppeteer = require('puppeteer')
+const { getChrome } = require('./chrome-script')
 
 exports.createPdf = async (req, res) => {
+  const chrome = await getChrome()
 
   // launch a new chrome instance
-  const browser = await puppeteer.launch({
-    headless: "new"
-  })
+  const browser = await puppeteer.connect({
+    browserWSEndpoint: chrome.endpoint
+  });
 
   // create a new page
   const page = await browser.newPage()
@@ -31,13 +33,13 @@ exports.createPdf = async (req, res) => {
   })
 
   res.set({ 'Content-Type': 'application/pdf', 'Content-Length': pdf.length })
-	res.send(pdf)
+  res.send(pdf)
 
   // close the browser
   await browser.close()
 
   // await sendPdf(filePath)
- 
+
 };
 
 
