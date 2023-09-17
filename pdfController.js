@@ -3,28 +3,50 @@ const path = require("path");
 const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
+const puppeteer = require('puppeteer')
 
-exports.createPdf = (req, res) => {
-  pdf.create(pdfTemplate(req.body), {phantomPath: "./node_modules/phantomjs-prebuilt/bin/phantomjs"}).toFile("/tmp/driverApplication.pdf", (err) => {
-    if (err) {
-      console.log(err);
-      res.status(500).send("Error generating PDF");
-    } else {
-      console.log("PDF generated successfully");
-      res.status(200).send("PDF generated");
-    }
-  });
+exports.createPdf = async (req, res) => {
+
+  // launch a new chrome instance
+  const browser = await puppeteer.launch({
+    headless: true
+  })
+
+  // create a new page
+  const page = await browser.newPage()
+
+  // set your html as the pages content
+  const html = await pdfTemplate(req.body)
+  await page.setContent(html, {
+    waitUntil: 'domcontentloaded'
+  })
+
+
+  const timeStamp = Date.now()
+  const filePath = `/tmp/driverApplication-` + timeStamp + `.pdf`
+
+  // or a .pdf file
+  await page.pdf({
+    format: 'A4',
+    path: filePath
+  })
+
+  res.set({ 'Content-Type': 'application/pdf', 'Content-Length': pdf.length })
+	res.send(pdf)
+
+  // close the browser
+  await browser.close()
+
+  // await sendPdf(filePath)
+ 
 };
 
-exports.fetchPdf = (req, res) => {
-  res.sendFile(path.join(__dirname, "/tmp/driverApplication.pdf"));
-};
 
-exports.sendPdf = (req, res) => {
-  const pathToAttachment = path.join(__dirname, "/tmp/driverApplication.pdf");
+const sendPdf = async (filePath) => {
+  const pathToAttachment = path.join(__dirname, filePath);
   const attachment = fs.readFileSync(pathToAttachment);
 
-  let transporter = nodemailer.createTransport({
+  let transporter = await nodemailer.createTransport({
     // Replace these options with your actual SMTP server details
     host: "smtp.gmail.com",
     service: 'Gmail',
@@ -51,7 +73,7 @@ exports.sendPdf = (req, res) => {
     ],
   };
 
-  transporter.sendMail(mailOptions, (error, info) => {
+  await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log("Error sending email:", error);
       res.status(500).send("Error sending email");
@@ -60,4 +82,8 @@ exports.sendPdf = (req, res) => {
       res.status(200).send("Email sent successfully");
     }
   });
+  console.log("Email Sent")
+
+  fs.rmSync(filePath)
+  console.log("File deleted")
 };
