@@ -8,7 +8,7 @@ exports.createPdf = async (req, res) => {
 
   // launch a new chrome instance
   const browser = await puppeteer.launch({
-    headless: true
+    headless: "new"
   })
 
   // create a new page
@@ -25,7 +25,7 @@ exports.createPdf = async (req, res) => {
   const filePath = `/tmp/driverApplication-` + timeStamp + `.pdf`
 
   // or a .pdf file
-  await page.pdf({
+  const pdf = await page.pdf({
     format: 'A4',
     path: filePath
   })
