@@ -1,4 +1,3 @@
-const pdf = require("html-pdf");
 const path = require("path");
 const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
