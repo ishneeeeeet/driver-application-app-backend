@@ -2,19 +2,27 @@ const path = require("path");
 const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
-const puppeteer = require('puppeteer')
-const { getChrome } = require('./chrome-script')
+const chromium = require("@sparticuz/chromium")
+const puppeteer = require("puppeteer-core")
 
 exports.createPdf = async (req, res) => {
-  const chrome = await getChrome()
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(),
+    headless: chromium.headless,
+    ignoreHTTPSErrors: true,
+  })
 
-  // launch a new chrome instance
-  const browser = await puppeteer.connect({
-    browserWSEndpoint: chrome.endpoint
-  });
+
 
   // create a new page
   const page = await browser.newPage()
+
+  await page.setViewport({
+    width: 1920,
+    height: 1080,
+  })
 
   // set your html as the pages content
   const html = await pdfTemplate(req.body)
