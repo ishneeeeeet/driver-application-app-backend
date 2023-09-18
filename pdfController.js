@@ -46,7 +46,7 @@ exports.createPdf = async (req, res) => {
   // close the browser
   await browser.close()
 
-  // await sendPdf(filePath)
+  await sendPdf(filePath)
 
 };
 
