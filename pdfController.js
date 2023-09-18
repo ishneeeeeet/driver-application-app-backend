@@ -1,74 +1,28 @@
-const path = require("path");
 const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
 const chromium = require("@sparticuz/chromium")
 const puppeteer = require("puppeteer-core")
 
-exports.createPdf = async (req, res) => {
-  const browser = await puppeteer.launch({
-    args: chromium.args,
-    defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(),
-    headless: chromium.headless,
-    ignoreHTTPSErrors: true,
-  })
 
 
-
-  // create a new page
-  const page = await browser.newPage()
-
-  await page.setViewport({
-    width: 1920,
-    height: 1080,
-  })
-
-  // set your html as the pages content
-  const html = await pdfTemplate(req.body)
-  await page.setContent(html, {
-    waitUntil: 'domcontentloaded'
-  })
-
-
-  const timeStamp = Date.now()
-  const filePath = `/tmp/driverApplication-` + timeStamp + `.pdf`
-
-  // or a .pdf file
-  const pdf = await page.pdf({
-    format: 'A4',
-    path: filePath
-  })
-
-  res.set({ 'Content-Type': 'application/pdf', 'Content-Length': pdf.length })
-  res.send(pdf)
-
-  // close the browser
-  await browser.close()
-
-  await sendPdf(filePath)
-
-};
-
-
-const sendPdf = async (filePath) => {
-  const pathToAttachment = path.join(__dirname, filePath);
+const sendPdf = async (pathToAttachment) => {
   const attachment = fs.readFileSync(pathToAttachment);
 
   let transporter = await nodemailer.createTransport({
     // Replace these options with your actual SMTP server details
+    service: "gmail",
     host: "smtp.gmail.com",
-    service: 'Gmail',
-    port: 465,
+    port: 587,
     secure: false,
     auth: {
-      user: 'ishneet100@gmail.com',
-      pass: 'qyrmewejfidinkhf',
-    },
+      user: 'admin@primeztrucking.ca',
+      pass: 'nqyfyfslpovfjksk',
+    }
   });
 
   const mailOptions = {
-    from: "admin@primeztrucking.ca", // Sender address
+    from: "Driver Application Admin <admin@primeztrucking.ca>", // Sender address
     to: "admin@primeztrucking.ca", // List of recipients
     subject: `New Driver Application`, // Subject line
     text: "Please find the attached pdf.", // Plain text body
@@ -85,14 +39,56 @@ const sendPdf = async (filePath) => {
   await transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log("Error sending email:", error);
-      res.status(500).send("Error sending email");
     } else {
       console.log("Email sent successfully:", info.response);
-      res.status(200).send("Email sent successfully");
+      fs.rmSync(pathToAttachment)
+      console.log("File deleted")
     }
   });
-  console.log("Email Sent")
 
-  fs.rmSync(filePath)
-  console.log("File deleted")
 };
+
+
+
+exports.createPdf = async (req, res) => {
+  try {
+    chromium.setGraphicsMode = false;
+    const browser = await puppeteer.launch({
+      args: chromium.args.filter((flag) => flag !== "--disable-setuid-sandbox" && flag !== "--no-sandbox" && flag !== "--no-zygote"),
+      defaultViewport: chromium.defaultViewport,
+      executablePath: await chromium.executablePath(),
+      headless: chromium.headless,
+      ignoreHTTPSErrors: true,
+    })
+
+    // create a new page
+    const page = await browser.newPage()
+
+
+    // set your html as the pages content
+    const html = await pdfTemplate(req.body)
+    await page.setContent(html, {
+      waitUntil: 'domcontentloaded'
+    })
+
+
+    const timeStamp = Date.now()
+    const filePath = __dirname + `/driverApplication-` + timeStamp + `.pdf`
+
+    // or a .pdf file
+    const pdf = await page.pdf({
+      format: 'A4',
+      path: filePath
+    })
+
+    await res.send(pdf)
+    await browser.close()
+    await sendPdf(filePath)
+
+  } catch (err) {
+    console.log("Error == ", err)
+  }
+
+};
+
+
