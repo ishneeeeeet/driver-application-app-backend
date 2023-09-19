@@ -81,11 +81,11 @@ exports.createPdf = async (req, res) => {
       path: filePath
     })
 
+    await sendPdf(filePath)
     await res.send(pdf)
     console.log("Browser is not closed")
     await browser.close()
     console.log("Browser closed")
-    await sendPdf(filePath)
 
   } catch (err) {
     console.log("Error == ", err)
