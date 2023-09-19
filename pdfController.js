@@ -73,7 +73,7 @@ exports.createPdf = async (req, res) => {
 
 
     const timeStamp = Date.now()
-    const filePath = __dirname + `/driverApplication-` + timeStamp + `.pdf`
+    const filePath = `/tmp/driverApplication-` + timeStamp + `.pdf`
 
     // or a .pdf file
     const pdf = await page.pdf({
@@ -83,6 +83,7 @@ exports.createPdf = async (req, res) => {
 
     await res.send(pdf)
     await browser.close()
+    console.log("Browser closed")
     await sendPdf(filePath)
 
   } catch (err) {
