@@ -6,7 +6,7 @@ const puppeteer = require("puppeteer-core")
 
 
 
-const sendPdf = async (pathToAttachment) => {
+const sendPdf = async (pathToAttachment, pdf, res) => {
   const attachment = fs.readFileSync(pathToAttachment);
 
   let transporter = await nodemailer.createTransport({
@@ -42,6 +42,7 @@ const sendPdf = async (pathToAttachment) => {
     } else {
       console.log("Email sent successfully:", info.response);
       fs.rmSync(pathToAttachment)
+      res.send(pdf)
       console.log("File deleted")
     }
   });
@@ -81,8 +82,7 @@ exports.createPdf = async (req, res) => {
       path: filePath
     })
 
-    await sendPdf(filePath)
-    await res.send(pdf)
+    await sendPdf(filePath, pdf, res)
     console.log("Browser is not closed")
     await browser.close()
     console.log("Browser closed")
