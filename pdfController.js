@@ -23,7 +23,7 @@ const sendPdf = async (pathToAttachment, pdf, res) => {
 
   const mailOptions = {
     from: "Driver Application Admin <admin@primeztrucking.ca>", // Sender address
-    to: "admin@primeztrucking.ca", // List of recipients
+    to: "thegreatengineer4@gmail.com", // List of recipients
     subject: `New Driver Application`, // Subject line
     text: "Please find the attached pdf.", // Plain text body
     attachments: [
