@@ -1,9 +1,7 @@
 const pdfTemplate = require("./document");
 const nodemailer = require("nodemailer");
 const fs = require("fs");
-const chromium = require("@sparticuz/chromium")
-const puppeteer = require("puppeteer-core")
-
+const chromium = require("chrome-aws-lambda")
 
 
 const sendPdf = async (pathToAttachment, pdf, res) => {
@@ -54,12 +52,9 @@ const sendPdf = async (pathToAttachment, pdf, res) => {
 exports.createPdf = async (req, res) => {
   try {
     // chromium.setGraphicsMode = false;
-    const browser = await puppeteer.launch({
+    const browser = await chromium.puppeteer.launch({
       args: chromium.args,
-      defaultViewport: chromium.defaultViewport,
-      executablePath: await chromium.executablePath(),
-      headless: chromium.headless,
-      ignoreHTTPSErrors: true,
+      executablePath: await chromium.executablePath
     })
 
     // create a new page

@@ -12,19 +12,19 @@
   "license": "ISC",
   "dependencies": {
     "@serverless-chrome/lambda": "^1.0.0-57.2",
-    "@sparticuz/chromium": "^116.0.0",
+    "chrome-aws-lambda": "^10.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "nodemailer": "^6.9.4",
     "nodemon": "^3.0.1",
-    "puppeteer": "^21.2.1",
-    "puppeteer-core": "^21.2.1",
+    "puppeteer-core": "^10.1.0",
     "serverless-http": "^3.2.0",
     "superagent": "^8.1.2"
   },
   "devDependencies": {
+    "puppeteer": "^21.3.1",
     "serverless-plugin-chrome": "^1.0.0-55.3"
   }
 }
