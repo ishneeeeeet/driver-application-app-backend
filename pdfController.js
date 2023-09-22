@@ -64,7 +64,7 @@ exports.createPdf = async (req, res) => {
     // set your html as the pages content
     const html = await pdfTemplate(req.body)
     await page.setContent(html, {
-      waitUntil: 'domcontentloaded'
+      waitUntil:  ['load', 'domcontentloaded', 'networkidle0']
     })
 
 
