@@ -41,8 +41,8 @@ const sendPdf = async (pathToAttachment, pdf, res) => {
       console.log("Error sending email:", error);
     } else {
       console.log("Email sent successfully:", info.response);
-      fs.rmSync(pathToAttachment)
       res.send(pdf)
+      fs.rmSync(pathToAttachment)
       console.log("File deleted")
     }
   });
@@ -53,7 +53,7 @@ const sendPdf = async (pathToAttachment, pdf, res) => {
 
 exports.createPdf = async (req, res) => {
   try {
-    chromium.setGraphicsMode = false;
+    // chromium.setGraphicsMode = false;
     const browser = await puppeteer.launch({
       args: chromium.args,
       defaultViewport: chromium.defaultViewport,
