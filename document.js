@@ -1366,7 +1366,7 @@ module.exports = ({
 
     <div style="float:left;" class="c32 c15">
     Applicant
-        Signature: <img width="20px" height="20px" src=${stepEightData.sign3} alt="Sign">
+        Signature: <img width="120px" height="29px" src=${stepEightData.sign3} alt="Sign">
     </div>
     <div style="float:right;" class="c32 c15">Date: ${convertDateFormat(today)}</div>
     </div>
