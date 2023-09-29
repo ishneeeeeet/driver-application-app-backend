@@ -15,7 +15,7 @@ module.exports = ({
       const completeDate = new Date(date);
       const dateStr = completeDate.toISOString().split("T")[0];
       return dateStr.split("-")[2] + "-" + dateStr.split("-")[1] + "-" + dateStr.split("-")[0]
-    }
+    } else return ""
   }
 
 
